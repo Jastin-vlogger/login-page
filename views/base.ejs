@@ -1,0 +1,49 @@
+
+<%-include('header')-%>
+
+    <div class="text-center center-div " id="login">
+        <div class="container w-25 border py-5 ">
+            <div class="title pb-5">
+                <h2 class="font-weight-bold">Login System</h2>
+                <span>Log in for the existing user</span>
+                <% if(locals.logout){%>
+                    <div class="alert text-center alert-success">
+                        <%=logout%>
+                    </div>
+                <%}%>
+            </div>
+            <form action="/login" method="POST" class="pt-1">
+                <div class="form-group">
+                    <input type="email" 
+                    class="form-control" 
+                    placeholder="email" 
+                    name="email" 
+                    value="<%=nameVal%>"/>
+                </div>
+                <p class="text-danger"><%=nameErr%></p>
+                <div id="emailmsg" style="color:Red;display:none">please fill the required</div>
+                <div class="form-group mt-3">
+                    <input type="password" 
+                    class="form-control" 
+                    name="password" 
+                    placeholder="password" >
+                    <p class="text-danger"><%=passwdErr%></p>
+                </div>
+                <button type="submit" class="btn btn-success mt-3">Submit</button>
+            </form>
+        </div> 
+    </div>
+
+    <script src="/static/validate.js"></script>
+
+    <script>
+        function disableBack() {
+        window.history.forward();
+      }
+      window.onload = disableBack();
+      window.onpageshow = function (evt) {
+        if (evt.persisted) disableBack();
+      };
+    </script>
+    
+<%-include('footer')-%>
